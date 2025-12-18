@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "ContentMind - Smart Video & Audio Assistant",
+  "version": "1.0.0",
+  "description": "AI-powered extension for video & audio platforms with summaries, mindmaps, chat, and personalized insights",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://www.spotify.com/*",
+    "https://open.spotify.com/*",
+    "https://www.twitch.tv/*",
+    "https://vimeo.com/*",
+    "https://*.soundcloud.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://www.spotify.com/*",
+        "https://open.spotify.com/*",
+        "https://www.twitch.tv/*",
+        "https://vimeo.com/*",
+        "https://*.soundcloud.com/*"
+      ],
+      "js": ["src/content/content-script.js"],
+      "css": ["src/styles/content.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "assets/icon16.svg",
+      "48": "assets/icon48.svg",
+      "128": "assets/icon128.svg"
+    }
+  },
+  "icons": {
+    "16": "assets/icon16.svg",
+    "48": "assets/icon48.svg",
+    "128": "assets/icon128.svg"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["src/content/injected.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

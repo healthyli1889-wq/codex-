@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContentMind</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"/>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        ContentMind
+      </h1>
+      <button class="settings-btn" id="settingsBtn" title="Settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 1v6m0 6v6M1 12h6m6 0h6" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="summary">Summary</button>
+      <button class="tab" data-tab="mindmap">Mindmap</button>
+      <button class="tab" data-tab="chat">Chat</button>
+      <button class="tab" data-tab="relevance">Relevance</button>
+    </nav>
+
+    <div class="content">
+      <!-- Summary Tab -->
+      <div class="tab-content active" id="summary-tab">
+        <div class="loading hidden" id="summaryLoading">
+          <div class="spinner"></div>
+          <p>Generating summary...</p>
+        </div>
+        <div class="empty-state" id="summaryEmpty">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/>
+            <polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2"/>
+            <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2"/>
+            <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <p>Navigate to a video or audio page and click "Generate Summary"</p>
+          <button class="primary-btn" id="generateSummaryBtn">Generate Summary</button>
+        </div>
+        <div class="summary-content hidden" id="summaryContent">
+          <div class="content-header">
+            <h3 id="summaryTitle"></h3>
+            <p class="meta" id="summaryMeta"></p>
+          </div>
+          <div class="summary-text" id="summaryText"></div>
+          <button class="secondary-btn" id="regenerateSummaryBtn">Regenerate</button>
+        </div>
+      </div>
+
+      <!-- Mindmap Tab -->
+      <div class="tab-content" id="mindmap-tab">
+        <div class="loading hidden" id="mindmapLoading">
+          <div class="spinner"></div>
+          <p>Generating mindmap...</p>
+        </div>
+        <div class="empty-state" id="mindmapEmpty">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+            <circle cx="6" cy="6" r="2" stroke="currentColor" stroke-width="2"/>
+            <circle cx="18" cy="6" r="2" stroke="currentColor" stroke-width="2"/>
+            <circle cx="6" cy="18" r="2" stroke="currentColor" stroke-width="2"/>
+            <circle cx="18" cy="18" r="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 9v3m-3-3l3 3m3-3l-3 3M9 15l3-3m3 3l-3-3" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <p>Navigate to a video or audio page and click "Generate Mindmap"</p>
+          <button class="primary-btn" id="generateMindmapBtn">Generate Mindmap</button>
+        </div>
+        <div class="mindmap-content hidden" id="mindmapContent">
+          <div id="mindmapViz"></div>
+          <button class="secondary-btn" id="regenerateMindmapBtn">Regenerate</button>
+        </div>
+      </div>
+
+      <!-- Chat Tab -->
+      <div class="tab-content" id="chat-tab">
+        <div class="empty-state" id="chatEmpty">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <p>Ask questions about the content</p>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-container">
+          <input
+            type="text"
+            id="chatInput"
+            placeholder="Ask a question about this content..."
+            class="chat-input"
+          />
+          <button class="send-btn" id="sendBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" stroke-width="2"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Relevance Tab -->
+      <div class="tab-content" id="relevance-tab">
+        <div class="loading hidden" id="relevanceLoading">
+          <div class="spinner"></div>
+          <p>Analyzing relevance...</p>
+        </div>
+        <div class="empty-state" id="relevanceEmpty">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <p>Analyze how relevant this content is to your interests and needs</p>
+          <button class="primary-btn" id="analyzeRelevanceBtn">Analyze Relevance</button>
+        </div>
+        <div class="relevance-content hidden" id="relevanceContent">
+          <div class="relevance-score-container">
+            <div class="score-circle" id="scoreCircle">
+              <svg width="120" height="120">
+                <circle cx="60" cy="60" r="54" stroke="#e0e0e0" stroke-width="8" fill="none"/>
+                <circle id="scoreCircleProgress" cx="60" cy="60" r="54" stroke="#4CAF50" stroke-width="8"
+                  fill="none" stroke-dasharray="339.292" stroke-dashoffset="339.292"
+                  transform="rotate(-90 60 60)" stroke-linecap="round"/>
+              </svg>
+              <div class="score-text">
+                <span class="score-value" id="scoreValue">0</span>
+                <span class="score-label">Relevance</span>
+              </div>
+            </div>
+          </div>
+          <div class="relevance-details">
+            <div class="detail-section">
+              <h4>Matching Topics</h4>
+              <div id="matchingTopics" class="tags"></div>
+            </div>
+            <div class="detail-section">
+              <h4>Analysis</h4>
+              <p id="relevanceAnalysis"></p>
+            </div>
+            <div class="detail-section">
+              <h4>Recommended For</h4>
+              <p id="recommendedFor"></p>
+            </div>
+          </div>
+          <button class="secondary-btn" id="regenerateRelevanceBtn">Reanalyze</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal hidden" id="settingsModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Settings</h2>
+          <button class="close-btn" id="closeSettingsBtn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="providerSelect">AI Provider</label>
+            <select id="providerSelect" class="input">
+              <option value="openai">OpenAI</option>
+              <option value="anthropic">Anthropic (Claude)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="apiKeyInput">API Key</label>
+            <input
+              type="password"
+              id="apiKeyInput"
+              class="input"
+              placeholder="Enter your API key"
+            />
+            <small>Your API key is stored locally and never sent anywhere except the AI provider.</small>
+          </div>
+          <div class="form-group">
+            <label>Your Interests & Goals</label>
+            <textarea
+              id="userPreferencesInput"
+              class="input textarea"
+              rows="4"
+              placeholder="E.g., I'm interested in web development, AI/ML, productivity tips, and learning about startups..."
+            ></textarea>
+            <small>Help us personalize content relevance for you.</small>
+          </div>
+          <button class="primary-btn full-width" id="saveSettingsBtn">Save Settings</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

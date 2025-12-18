@@ -1,0 +1,22 @@
+{
+  "name": "contentmind-extension",
+  "version": "1.0.0",
+  "description": "AI-powered browser extension for video & audio platforms",
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "test": "echo 'Tests not implemented yet'"
+  },
+  "keywords": [
+    "browser-extension",
+    "ai",
+    "video",
+    "audio",
+    "summarization",
+    "mindmap",
+    "chat"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

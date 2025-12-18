@@ -1,0 +1,74 @@
+/* Content script styles */
+
+#contentmind-floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  cursor: pointer;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease;
+}
+
+#contentmind-floating-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+}
+
+#contentmind-floating-button:active {
+  transform: translateY(-2px);
+}
+
+#contentmind-floating-button svg {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tooltip */
+#contentmind-floating-button::before {
+  content: attr(title);
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 12px;
+  padding: 8px 12px;
+  background: #333;
+  color: white;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+#contentmind-floating-button:hover::before {
+  opacity: 1;
+}
+
+/* Hide button on print */
+@media print {
+  #contentmind-floating-button {
+    display: none !important;
+  }
+}
