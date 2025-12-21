@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Healthy's Newsletter</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span>&gt;</span> healthy <span class="admin-tag">admin</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#episodes" class="nav-item active" data-section="episodes">
+                    <span class="icon">📻</span> Episodes
+                </a>
+                <a href="#subscribers" class="nav-item" data-section="subscribers">
+                    <span class="icon">👥</span> Subscribers
+                </a>
+                <a href="#stats" class="nav-item" data-section="stats">
+                    <span class="icon">📊</span> Stats
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="/" class="back-link">← Back to Site</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Episodes Section -->
+            <section id="episodes-section" class="content-section active">
+                <div class="section-header">
+                    <h1>Podcast Episodes</h1>
+                    <button class="btn btn-primary" onclick="showAddEpisodeForm()">+ Add Episode</button>
+                </div>
+
+                <!-- Add Episode Form (Hidden by default) -->
+                <div id="add-episode-form" class="form-card" style="display: none;">
+                    <h2>Add New Episode</h2>
+                    <form id="episode-form">
+                        <div class="form-group">
+                            <label>Episode Number</label>
+                            <input type="text" name="number" placeholder="025" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" name="title" placeholder="Episode Title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Guest</label>
+                            <input type="text" name="guest" placeholder="Guest Name (optional)">
+                        </div>
+                        <div class="form-group">
+                            <label>Duration</label>
+                            <input type="text" name="duration" placeholder="42:15">
+                        </div>
+                        <div class="form-group">
+                            <label>Audio File</label>
+                            <input type="file" id="audio-file" accept="audio/*">
+                            <input type="hidden" name="audioUrl" id="audio-url">
+                            <div id="upload-status"></div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Save Episode</button>
+                            <button type="button" class="btn btn-secondary" onclick="hideAddEpisodeForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Episodes List -->
+                <div id="episodes-list" class="data-grid">
+                    <!-- Episodes will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Subscribers Section -->
+            <section id="subscribers-section" class="content-section">
+                <div class="section-header">
+                    <h1>Newsletter Subscribers</h1>
+                    <div class="search-box">
+                        <input type="text" id="search-subscribers" placeholder="Search subscribers...">
+                    </div>
+                </div>
+
+                <div id="subscribers-list" class="data-table">
+                    <!-- Subscribers will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section id="stats-section" class="content-section">
+                <div class="section-header">
+                    <h1>Statistics</h1>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="total-subscribers">-</div>
+                            <div class="stat-label">Total Subscribers</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📻</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="total-episodes">-</div>
+                            <div class="stat-label">Total Episodes</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="growth-rate">∞</div>
+                            <div class="stat-label">Growth</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

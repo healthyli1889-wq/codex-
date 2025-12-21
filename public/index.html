@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy's Newsletter</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="matrix-bg"></div>
+    <div class="grid-overlay"></div>
+    <div class="scanlines"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">healthy</div>
+        <ul class="nav-links">
+            <li><a href="#newsletter">newsletter</a></li>
+            <li><a href="#podcast">podcast</a></li>
+            <li><a href="#product">product_101</a></li>
+            <li><a href="#about">about</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">init --newsletter</span>
+            <h1><span class="highlight">Healthy's</span> Newsletter</h1>
+            <p class="hero-description">// Building at the intersection of AI, product, and growth. Thoughts on startups, neuroscience, and the art of filmmaking.</p>
+            <div class="hero-cta">
+                <a href="#newsletter" class="btn btn-primary">subscribe()</a>
+                <a href="#about" class="btn btn-secondary">learn_more</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section id="newsletter">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Newsletter</h2>
+        </div>
+        <div class="newsletter-container">
+            <div class="newsletter-content">
+                <p>Weekly dispatches on AI product development, growth strategies for early-stage startups, and occasional deep dives into neuroscience and film.</p>
+                <ul class="newsletter-features">
+                    <li>AI product insights & case studies</li>
+                    <li>Growth frameworks for startups</li>
+                    <li>Neuroscience x tech explorations</li>
+                    <li>Film & storytelling breakdowns</li>
+                </ul>
+            </div>
+            <div class="newsletter-form">
+                <div class="terminal-line">
+                    <span class="cmd">$</span> ./subscribe --join
+                </div>
+                <form id="subscribe-form">
+                    <div class="form-group">
+                        <label>name:</label>
+                        <input type="text" name="name" placeholder="enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>email:</label>
+                        <input type="email" name="email" placeholder="enter your email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">execute()</button>
+                </form>
+                <div id="subscribe-message" style="display: none; margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Podcast Section -->
+    <section id="podcast">
+        <div class="section-header">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Podcast</h2>
+        </div>
+        <div class="podcast-grid" id="podcast-grid">
+            <!-- Episodes will be loaded dynamically -->
+        </div>
+        <div class="podcast-cta">
+            <a href="#" class="btn btn-secondary">view_all_episodes</a>
+        </div>
+    </section>
+
+    <!-- Product 101 Section -->
+    <section id="product">
+        <div class="section-header">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Product 101</h2>
+        </div>
+        <p class="product-intro">Practical frameworks and deep dives for building and scaling AI products.</p>
+        <div class="product-modules">
+            <div class="product-module">
+                <div class="module-icon">{AI}</div>
+                <h3 class="module-title">AI Product Playbook</h3>
+                <p class="module-description">From 0 to 1: building AI-native products that users actually want. Strategy, UX, and technical considerations.</p>
+                <a href="#" class="module-link">explore →</a>
+            </div>
+            <div class="product-module">
+                <div class="module-icon">&lt;/&gt;</div>
+                <h3 class="module-title">Growth Engineering</h3>
+                <p class="module-description">Technical growth strategies for early-stage startups. Metrics, experiments, and scaling tactics.</p>
+                <a href="#" class="module-link">explore →</a>
+            </div>
+            <div class="product-module">
+                <div class="module-icon">[PM]</div>
+                <h3 class="module-title">PM Fundamentals</h3>
+                <p class="module-description">Product management essentials: roadmapping, prioritization, stakeholder management, and execution.</p>
+                <a href="#" class="module-link">explore →</a>
+            </div>
+            <div class="product-module">
+                <div class="module-icon">○○○</div>
+                <h3 class="module-title">Startup Toolkit</h3>
+                <p class="module-description">Resources, templates, and frameworks for founders navigating the early stages.</p>
+                <a href="#" class="module-link">explore →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <div class="about-image-frame">
+                    <div class="about-image-placeholder">
+                        // photo<br>// here
+                    </div>
+                </div>
+            </div>
+            <div class="about-content">
+                <h2>Building the future with <span class="highlight">AI</span></h2>
+                <p class="about-text">I work at the intersection of AI, product, and growth—helping early-stage startups build products that matter and scale them to reach more people.</p>
+                <p class="about-text">Beyond tech, I'm deeply passionate about filmmaking and neuroscience. I believe the best products come from understanding both how the brain works and how stories move us.</p>
+                <p class="about-text">This newsletter is where I share what I'm learning, building, and thinking about.</p>
+
+                <div class="about-tags">
+                    <span class="tag">AI</span>
+                    <span class="tag">Product</span>
+                    <span class="tag">Growth</span>
+                    <span class="tag">Startups</span>
+                    <span class="tag">Neuroscience</span>
+                    <span class="tag">Film</span>
+                </div>
+
+                <div class="about-stats" id="about-stats">
+                    <!-- Stats will be loaded dynamically -->
+                </div>
+
+                <div class="about-social">
+                    <a href="#" class="social-link">X</a>
+                    <a href="#" class="social-link">Li</a>
+                    <a href="#" class="social-link">Gh</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">healthy</div>
+        <p class="footer-text">© 2025 // all rights reserved</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
